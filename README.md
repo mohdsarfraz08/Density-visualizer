@@ -46,5 +46,5 @@ project/\
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/yourusername/Density-visualizer.git
+git clone https://github.com/mohdsarfraz08/Density-visualizer.git
 cd Density-visualizer
