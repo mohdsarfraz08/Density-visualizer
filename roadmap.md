@@ -1,1 +1,109 @@
-Project Roadmap: Prayagraj Public Transport & Crowd Density VisualizerProject Deadline: August 19, 2025Guiding Strategy: Build a Minimum Viable Product (MVP) first. Prioritize speed and visual impact by hardcoding all data. The goal is a demonstrable concept, not a production-ready system.Day 0 (Friday, Aug 8): Environment Setup & Project ScaffoldingGoal: Have a running "Hello World" for both the frontend and backend.[ ] Task 1: Install Tools: Ensure Node.js and Git are installed on all team members' machines.[ ] Task 2: Create GitHub Repo: Create one central GitHub repository. Add all team members as collaborators.[ ] Task 3: Project Structure:Create a main project folder.Inside, create two sub-folders: client (for frontend) and server (for backend).[ ] Task 4: Initialize Frontend (Client):cd clientnpm create vite@latest . -- --template reactnpm installnpm install leaflet react-leafletRun npm run dev to confirm the default React page is working.[ ] Task 5: Initialize Backend (Server):cd servernpm init -ynpm install express cors socket.ioCreate a server.js file and set up a basic Express server.Days 1-2 (Sat, Aug 9 - Sun, Aug 10): The Static WorldGoal: Display a map of Prayagraj with one static bus route and key landmarks.[ ] Task 1 (Frontend): Render a full-screen map of Prayagraj using react-leaflet.[ ] Task 2 (Data Collection): Manually trace ONE major route on Google Maps and get 20-30 latitude/longitude coordinates. Collect coordinates for 4-5 key landmarks.[ ] Task 3 (Backend): Hardcode the collected coordinates in a server/data.js file.[ ] Task 4 (Backend): Create static API endpoints (/api/routes, /api/landmarks) to serve the hardcoded data.[ ] Task 5 (Frontend): Use useEffect and fetch to call the backend APIs. Draw the route (<Polyline>) and landmarks (<Marker>) on the map.✅ Checkpoint (Sun Night): A web page showing a map of Prayagraj with a colored line and a few icons.Days 3-4 (Mon, Aug 11 - Tue, Aug 12): Backend in MotionGoal: Create a backend simulation that moves virtual vehicles along the routes.[ ] Task 1 (Backend): Write a "vehicle manager" script to maintain the state of active vehicles in memory.[ ] Task 2 (Backend): Integrate Socket.IO into the Express server.[ ] Task 3 (Backend): Create a "Game Loop" using setInterval (e.g., every 2 seconds) to update vehicle positions.[ ] Task 4 (Backend): In the loop, emit the array of all updated vehicle positions to all clients via a vehiclesUpdate socket event.✅ Checkpoint (Tue Night): The backend is independently simulating moving vehicles and broadcasting their locations.Days 5-6 (Wed, Aug 13 - Thu, Aug 14): Real-time FrontendGoal: Animate vehicle icons on the frontend map. This is the most critical milestone.[ ] Task 1 (Frontend): npm install socket.io-client.[ ] Task 2 (Frontend): In your map component, connect to the backend's Socket.IO server.[ ] Task 3 (Frontend): Listen for the vehiclesUpdate event and update a single React state array with the vehicle data.[ ] Task 4 (Frontend): Map over the state array to render a <Marker> for each vehicle. The markers will now move automatically when the state updates.✅ Checkpoint (Thu Night): You can see multiple vehicle icons smoothly moving on the map in your browser.Days 7-8 (Fri, Aug 15 - Sat, Aug 16): Visual Polish & HeatmapGoal: Add the crowd density heatmap and make the application look presentable.[ ] Task 1 (Backend): Hardcode heatmap data points in data.js and create an API endpoint (/api/heatmap) to serve it.[ ] Task 2 (Frontend): Fetch the heatmap data and render it using a library like react-leaflet-heatmap-layer-v3.[ ] Task 3 (Frontend): Add a clean header and a static legend to the UI. Use CSS to make it look professional.✅ Checkpoint (Sat Night): The app looks like a real, visually appealing dashboard.Day 9 (Sun, Aug 17): DeploymentGoal: Get the project live on the internet.[ ] Task 1: Create free accounts on Vercel (for frontend) and Render.com (for backend).[ ] Task 2 (Backend): Deploy the server folder to Render.com.[ ] Task 3 (Frontend): Deploy the client folder to Vercel.[ ] Task 4 (Connect): Get the public URL for your Render backend and update all fetch and socket connection URLs in your frontend code. Redeploy the frontend.✅ Checkpoint (Sun Night): You have a public URL that you can share and open on any device.Days 10-11 (Mon, Aug 18 - Tue, Aug 19): Final Polish & Presentation PrepGoal: Finalize the project and prepare to present it confidently.[ ] Task 1 (Mon): Fix any visual bugs. Add comments to your code. Write a detailed README.md file in your GitHub repository.[ ] Task 2 (Mon Night): Rehearse your presentation, covering the problem, your solution, a live demo, the technology used, and future scope.[ ] Task 3 (Tue): D-Day. Have the live URL ready and a local version running as a backup.
+# Project Roadmap: Prayagraj Public Transport & Crowd Density Visualizer
+*Deadline:* August 19, 2025  
+*Strategy:* Build a *Minimum Viable Product (MVP)* first. Prioritize *speed* and *visual impact* by hardcoding all data. The goal is a *demonstrable concept*, not a production-ready system.
+
+---
+
+## 📌 Quick Navigation
+- [Day 0 – Environment Setup & Project Scaffolding](#day-0-friday-aug-8-environment-setup--project-scaffolding)
+- [Days 1-2 – The Static World](#days-1-2-sat-aug-9---sun-aug-10-the-static-world)
+- [Days 3-4 – Backend in Motion](#days-3-4-mon-aug-11---tue-aug-12-backend-in-motion)
+- [Days 5-6 – Real-time Frontend](#days-5-6-wed-aug-13---thu-aug-14-real-time-frontend)
+- [Days 7-8 – Visual Polish & Heatmap](#days-7-8-fri-aug-15---sat-aug-16-visual-polish--heatmap)
+- [Day 9 – Deployment](#day-9-sun-aug-17-deployment)
+- [Days 10-11 – Final Polish & Presentation Prep](#days-10-11-mon-aug-18---tue-aug-19-final-polish--presentation-prep)
+
+---
+
+## Day 0 (Friday, Aug 8): Environment Setup & Project Scaffolding
+*Goal:* Have a running "Hello World" for both the frontend and backend.
+
+- [ ] *Task 1:* Install Node.js and Git on all team members' machines.  
+- [ ] *Task 2:* Create a central GitHub repository and add all team members as collaborators.  
+- [ ] *Task 3:* Create main project folder with:
+  - client (frontend)
+  - server (backend)  
+- [ ] *Task 4:* Initialize Frontend  
+  - cd client  
+  - npm create vite@latest . -- --template react  
+  - npm install  
+  - npm install leaflet react-leaflet  
+  - npm run dev → verify page works  
+- [ ] *Task 5:* Initialize Backend  
+  - cd server  
+  - npm init -y  
+  - npm install express cors socket.io  
+  - Create server.js with a basic Express server  
+
+---
+
+## Days 1-2 (Sat, Aug 9 - Sun, Aug 10): The Static World
+*Goal:* Display a map of Prayagraj with one static bus route and key landmarks.
+
+- [ ] *Task 1 (Frontend):* Render full-screen map using react-leaflet.  
+- [ ] *Task 2 (Data):* Trace *one major route* (20–30 coordinates) + *4-5 landmarks* from Google Maps.  
+- [ ] *Task 3 (Backend):* Hardcode coordinates in server/data.js.  
+- [ ] *Task 4 (Backend):* Create static API endpoints:
+  - /api/routes
+  - /api/landmarks  
+- [ ] *Task 5 (Frontend):* Fetch and draw route (<Polyline>) + landmarks (<Marker>).  
+
+✅ *Checkpoint (Sun Night):* Map with a colored line + landmark icons visible.
+
+---
+
+## Days 3-4 (Mon, Aug 11 - Tue, Aug 12): Backend in Motion
+*Goal:* Simulate moving vehicles on backend.
+
+- [ ] *Task 1:* Create "vehicle manager" script to track active vehicles.  
+- [ ] *Task 2:* Integrate socket.io into Express server.  
+- [ ] *Task 3:* Create setInterval loop to update positions every 2 seconds.  
+- [ ] *Task 4:* Emit updated positions via vehiclesUpdate event.  
+
+✅ *Checkpoint (Tue Night):* Backend simulates vehicle movement & broadcasts updates.
+
+---
+
+## Days 5-6 (Wed, Aug 13 - Thu, Aug 14): Real-time Frontend
+*Goal:* Display moving vehicle icons on the map.
+
+- [ ] *Task 1:* npm install socket.io-client in frontend.  
+- [ ] *Task 2:* Connect frontend to backend’s socket.io server.  
+- [ ] *Task 3:* Listen for vehiclesUpdate → update state array.  
+- [ ] *Task 4:* Map over array to render <Marker> for each vehicle.  
+
+✅ *Checkpoint (Thu Night):* Vehicles smoothly moving on map.
+
+---
+
+## Days 7-8 (Fri, Aug 15 - Sat, Aug 16): Visual Polish & Heatmap
+*Goal:* Add heatmap and improve UI.
+
+- [ ] *Task 1 (Backend):* Hardcode heatmap data in data.js + API /api/heatmap.  
+- [ ] *Task 2 (Frontend):* Render heatmap using react-leaflet-heatmap-layer-v3.  
+- [ ] *Task 3 (Frontend):* Add header + legend. Apply clean CSS styling.  
+
+✅ *Checkpoint (Sat Night):* Dashboard-style look with heatmap.
+
+---
+
+## Day 9 (Sun, Aug 17): Deployment
+*Goal:* Deploy app online.
+
+- [ ] *Task 1:* Create accounts on *Vercel* (frontend) & *Render.com* (backend).  
+- [ ] *Task 2:* Deploy backend to Render.  
+- [ ] *Task 3:* Deploy frontend to Vercel.  
+- [ ] *Task 4:* Update API/socket URLs → redeploy frontend.  
+
+✅ *Checkpoint (Sun Night):* Public URL available for demo.
+
+---
+
+## Days 10-11 (Mon, Aug 18 - Tue, Aug 19): Final Polish & Presentation Prep
+*Goal:* Prepare final product & presentation.
+
+- [ ] *Task 1 (Mon):* Fix bugs, add comments, write README.md.  
+- [ ] *Task 2 (Mon Night):* Rehearse presentation (problem → solution → demo → tech stack → future scope).  
+- [ ] *Task 3 (Tue):* Have live URL ready + local backup.  
+
+---
