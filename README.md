@@ -15,16 +15,18 @@ A real-time (simulated) map application to visualize bus routes, moving vehicles
 
 ## 📂 Project Structure
 
-project/\
-├── client/ # React frontend \
-│ ├── src/\
-│ └── ...\
-│\
-├── server/ # Node.js backend\
-│ ├── server.js\
-│ ├── data.js\
-│ └── ...
-
+Density-visualizer/ \
+├── main_project/ \
+│   ├── client/          # React frontend (Vite) \
+│   │   ├── src/ \
+│   │   │   ├── App.jsx  # Main React component (currently default Vite template) \
+│   │   │   ├── main.jsx # React entry point \
+│   │   │   └── *.css    # Styling files \
+│   │   └── package.json # Frontend dependencies \
+│   └── server/          # Node.js backend \
+│       ├── server.js    # Express + Socket.io server \
+│       ├── data.js      # Hardcoded Prayagraj data \
+│       └── test-api.js  # API testing utility \
 
 ---
 
