@@ -1,0 +1,34 @@
+[
+  {
+    "route_id": "PE-2",
+    "route_name": "Prayagraj Junction ↔ Civil Lines",
+    "stops": [
+      { "stop_id": "STP-001", "stop_name": "Prayagraj Junction", "lat": 25.4358, "lng": 81.8463 },
+      { "stop_id": "STP-002", "stop_name": "Civil Lines Market", "lat": 25.4415, "lng": 81.8528 },
+      { "stop_id": "STP-003", "stop_name": "Triveni Sangam", "lat": 25.4493, "lng": 81.8606 }
+    ],
+    "buses": [
+      {
+        "bus_id": "BUS-001",
+        "bus_number": "2A",
+        "schedule": [
+          { "stop_id": "STP-001", "arrival_time": "06:00", "departure_time": "06:05" },
+          { "stop_id": "STP-002", "arrival_time": "06:15", "departure_time": "06:17" },
+          { "stop_id": "STP-003", "arrival_time": "06:30", "departure_time": "06:35" }
+        ],
+        "crowd_pattern": { "morning": "high", "midday": "medium", "evening": "high" }
+      },
+      {
+        "bus_id": "BUS-002",
+        "bus_number": "2B",
+        "schedule": [
+          { "stop_id": "STP-001", "arrival_time": "07:00", "departure_time": "07:03" },
+          { "stop_id": "STP-002", "arrival_time": "07:13", "departure_time": "07:15" },
+          { "stop_id": "STP-003", "arrival_time": "07:28", "departure_time": "07:30" }
+        ],
+        "crowd_pattern": { "morning": "medium", "midday": "low", "evening": "high" }
+      }
+    ]
+  }
+]
+

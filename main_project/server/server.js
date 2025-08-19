@@ -1,8 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
 const socketIo = require('socket.io');
 const { busRoute, landmarks, heatmapData, vehicles } = require('./data');
+const { connectToDatabase } = require('./config/db');
+const newRoutesApi = require('./routes/routes');
 
 const app = express();
 const server = http.createServer(app);
@@ -16,6 +19,9 @@ const io = socketIo(server, {
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// New Mongo-backed API routes mounted before legacy static endpoints
+app.use('/api', newRoutesApi);
 
 // Basic Hello World endpoint
 app.get('/', (req, res) => {
@@ -141,4 +147,6 @@ server.listen(PORT, () => {
   console.log(`🚌 Vehicles API: http://localhost:${PORT}/api/vehicles`);
   console.log(`🌐 Socket.io ready for real-time updates`);
   console.log(`🎮 Vehicle simulation ready - use 'startSimulation' event to begin`);
+  // Connect to DB after server starts
+  connectToDatabase();
 }); 
